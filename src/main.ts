@@ -6,14 +6,19 @@ import * as cookieParser from 'cookie-parser';
 import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
   
   const configService = app.get(ConfigService);
   
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   app.setGlobalPrefix('api');
   app.use(cookieParser());
-  app.enableCors();
+
+  app.enableCors({
+    allowedHeaders: ['content-type'],
+    origin: 'http://localhost:3000',
+    credentials: true,
+  });
 
   const prismaService = app.get(PrismaService);
   await prismaService.enableShutdownHooks(app);

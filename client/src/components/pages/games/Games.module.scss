@@ -1,0 +1,14 @@
+.hoverCard {
+    transition: filter 0.3s;
+  }
+  
+  .hoverCard:hover {
+    filter: brightness(50%);
+  }
+  
+
+  .addToCartButton {
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 10px
+  }

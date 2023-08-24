@@ -1,51 +1,32 @@
-import {
-  Button,
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-} from 'reactstrap';
+import React from 'react';
+import { NavLink, Container } from 'reactstrap';
+import { Button } from 'react-bootstrap';
+
+import styles from './MainMenu.module.scss';
 
 const MainMenu = () => {
-
   return (
-    <div>
-      <Navbar color="dark" dark expand="md">
-        <NavbarBrand href="/">BorderAds</NavbarBrand>
-        <NavbarToggler />
-        <Collapse navbar className="justify-content-between">
-          <div>
-          </div>
-          <div>
-            <Nav className="ml-auto align-items-center" navbar>
-                <NavItem>
-                  <NavLink href="/logout">
-                  <Button outline color="warning">
-                      Logout
-                    </Button>
-                  </NavLink>
-                </NavItem>
-                  <NavItem>
-                    <NavLink href="/login">
-                   <Button outline color="warning">
-                        Login
-                      </Button>
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink href="/register">
-                    <Button outline color="warning">
-                        Register
-                      </Button>
-                    </NavLink>
-                  </NavItem>
-            </Nav>
-          </div>
-        </Collapse>
-      </Navbar>
+    <div className={styles.mainMenu}>
+      <div className={styles.background}>      
+          <Container>
+            <div className={styles.top}>
+              <div>
+                <h1>GameBliss</h1>
+              </div>
+              <div className={styles.buttonsContainer}>
+                <NavLink href="/login"><Button variant="warning">Logowanie</Button></NavLink>
+                <NavLink href="/register"><Button variant="warning">Rejestracja</Button></NavLink>
+              </div>
+            </div>
+            <div className={styles.content}>
+              <h1>BEST GAMES BEST PRICES!</h1>
+              <p>TEST 2</p>
+              <NavLink to="/register">
+                <Button>DOŁĄCZ DO NAS</Button>
+              </NavLink>
+            </div>
+          </Container>
+      </div>
     </div>
   );
 };

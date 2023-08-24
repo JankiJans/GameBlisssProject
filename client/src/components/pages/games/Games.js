@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Card, ListGroup, Spinner } from 'react-bootstrap';
+import { Card, Spinner, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { API_URL } from '../../../config';
-import {
-  getProducts,
-  updateProducts,
-} from '../../../redux/productsRedux';
+import { getProducts, updateProducts } from '../../../redux/productsRedux';
 import { IMAGES_URL } from '../../../config';
+import styles from './Games.module.scss';
+
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 const FeatureProduct = () => {
   const [isLoading, setLoading] = useState(false);
@@ -33,6 +35,13 @@ const FeatureProduct = () => {
     }
   }
 
+  function shortenTitle(title, maxLength) {
+    if (title.length > maxLength) {
+      return title.substring(0, maxLength) + '...';
+    }
+    return title;
+  }
+
   if (isLoading) {
     return (
       <Spinner animation="border" role="status" className="d-block mx-auto">
@@ -43,18 +52,25 @@ const FeatureProduct = () => {
     return (
       <div className="py-5 d-flex flex-wrap">
         {allProducts.map((prod) => (
-          <div key={prod._id} style={{ width: '16rem' }} className="mx-2 mb-5">
+          <div key={prod.id} style={{ width: '250px' }} className="mx-2 mb-5">
             <Card>
-            <Card.Img variant="top" src={IMAGES_URL + prod.image} style={{ height: '250px' }} alt="image here" />
-              <Card.Body>
-                <Card.Title>{prod.name}</Card.Title>
+              <a href={`/products/${prod.id}`}>
+                <Card.Img
+                  variant="top"
+                  src={IMAGES_URL + prod.image}
+                  style={{ height: '250px' }}
+                  alt="image here"
+                  className={styles.hoverCard}
+                />
+              </a>
+              <Card.Body style={{ height: '150px' }}>
+                <Card.Title>{shortenTitle(prod.name, 22)}</Card.Title>
                 <Card.Text>{prod.category}</Card.Text>
+                <Card.Text>From {prod.price},99$</Card.Text>
               </Card.Body>
-              <ListGroup className="list-group-flush">
-                <ListGroup.Item>{prod.price}</ListGroup.Item>
-                <ListGroup.Item>{prod.description}</ListGroup.Item>
-                <ListGroup.Item>{prod.producent}</ListGroup.Item>
-              </ListGroup>
+              <Button variant="primary" className={`${styles.addToCartButton} d-flex justify-content-center`} >
+                  <FontAwesomeIcon icon={faShoppingCart} />
+              </Button>
             </Card>
           </div>
         ))}

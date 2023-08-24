@@ -3,9 +3,9 @@ import Footer from './../Footer/Footer';
 
 const MainLayout = ({ children }) => (
   <div>
-    <MainMenu />
+    {/* <MainMenu /> */}
     {children}
-    <Footer />
+    {/* <Footer /> */}
   </div>
 );
 

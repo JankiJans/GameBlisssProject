@@ -2,6 +2,7 @@ import MainLayout from "./components/layout/MainLayout/MainLayout";
 // import Login from "./components/pages/login/loginPage";
 import Register from "./components/pages/register/RegisterPage";
 import HomePage from "./components/pages/home/HomePage";
+import SeeMore from "./components/pages/singleGamePage/SingleGamePage";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -27,6 +28,7 @@ function App() {
       {/* <Route path="/login" element={<Login />} /> */}
       <Route path="/register" element={<Register />} />
       <Route path="/" element={<HomePage />} />
+      <Route path="/products/:id" element={<SeeMore/>} />
       </Routes>
     </MainLayout>
   );

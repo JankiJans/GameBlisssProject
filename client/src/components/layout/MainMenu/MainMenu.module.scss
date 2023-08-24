@@ -1,0 +1,48 @@
+.container {
+
+}
+
+.mainMenu {
+    height: 60vh;
+  }
+  
+  .background {
+    left: 0;
+    height: 60vh;
+    background-image: url('http://localhost:3000/images/products/background.jpg'); /* Ścieżka do zdjęcia */
+    background-size: cover;
+    background-position: top
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px; 
+  }
+  
+  .top {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    padding: 20px;
+  }
+  
+  .content {
+    margin-top: 150px;
+    text-align: center;
+    color: white;
+  }
+  
+  .buttonsContainer {
+    display: flex; /* Use flex display to horizontally align the buttons */
+    gap: 10px; /* Add some spacing between the buttons */
+    align-items: center; /* Align the buttons vertically in the middle */
+  }
+  
+  
