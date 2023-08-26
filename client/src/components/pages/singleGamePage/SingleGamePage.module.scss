@@ -1,0 +1,31 @@
+.gameImage img {
+    width: 370px;
+    height: 100%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.gameBox {
+    padding-top: 70px;
+    display: flex;
+}
+
+.gameInfo {
+    color: white;
+    margin-left: 15px;
+
+}
+
+.boxImage {
+  height: 450px;
+  object-fit: cover;
+}
+
+.carousel {
+    margin-top: 40px;
+}
+
+.carousel img {
+    height: 450px;
+    width: 100%;
+    object-fit: cover;
+}

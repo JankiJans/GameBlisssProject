@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
-  const [login, setLogin] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [status, setStatus] = useState(null)
 
@@ -27,15 +27,15 @@ const Login = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ login, password})
+      body: JSON.stringify({ email, password})
     }
     setStatus('loading')
     fetch(`${API_URL}/auth/login`, options)
       .then(res => {
-        if(res.status === 200) {
+        if(res.status === 201) {
           setStatus('success')
-          dispatch(logIn({ login }))
-          navigate('/')
+          dispatch(logIn({ email }))
+        //   navigate('/')
         } else if(res.status === 400) {
           setStatus('clientError')
         } else {
@@ -86,9 +86,9 @@ const Login = () => {
         </Spinner>
       )}
 
-      <Form.Group className='mb-3' controlId='formLogin'>
-        <Form.Label>Login</Form.Label>
-        <Form.Control type='text' placeholder='Enter login' value={login} onChange={e => setLogin(e.target.value)}/>
+      <Form.Group className='mb-3' controlId='formEmail'>
+        <Form.Label>Email</Form.Label>
+        <Form.Control type='text' placeholder='Enter email' value={email} onChange={e => setEmail(e.target.value)}/>
       </Form.Group>
 
       <Form.Group className='mb-3' controlId='formPassword'>

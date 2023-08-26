@@ -35,5 +35,18 @@ import {
     @IsNotEmpty()
     @IsString()
     image: string
+
+    @IsNotEmpty()
+    @IsInt()
+    @Min(0)
+    rating: number
+
+    @IsNotEmpty()
+    @IsString()
+    secondImage: string
+
+    @IsNotEmpty()
+    @IsString()
+    thirdImage: string
   }
   

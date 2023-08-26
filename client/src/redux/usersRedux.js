@@ -1,5 +1,5 @@
 // selectors
-export const getUser = (state) => state.user;
+export const getUser = (state) => state.email;
 
 // actions
 const createActionName = (actionName) => `app/users/${actionName}`;
@@ -8,7 +8,7 @@ const LOG_OUT = createActionName('LOG_OUT');
 
 // action creators
 export const logIn = (payload) => {
-  localStorage.setItem('loggedInUser', payload.login);
+  localStorage.setItem('loggedInUser', payload.email);
   return {
     type: LOG_IN,
     payload,
@@ -35,7 +35,7 @@ const initialState = {
 const usersReducer = (statePart = initialState, action) => {
   switch (action.type) {
     case LOG_IN:
-      return { ...statePart, login: action.payload.login };
+      return { ...statePart, email: action.payload.email };
     case LOG_OUT:
       return { ...statePart, login: null };
     case SAVE_USER_TO_LOCAL_STORAGE:

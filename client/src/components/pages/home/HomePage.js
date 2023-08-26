@@ -1,14 +1,13 @@
 import { Container, Row, Col } from 'reactstrap';
 import Games from '../games/Games';
-import MainMenu from '../../layout/MainMenu/MainMenu';
-import DropDowns from '../../features/DropDowns/DropDowns';
 import styles from './HomePage.module.scss';
 import SearchBar from '../../features/SearchBar/SearchBar';
+import Content from '../../layout/Content/Content';
 
 const HomePage = () => {
   return (
     <div>
-      <MainMenu />
+      <Content/>
       <div style={{ backgroundColor: '#040D12' }}>
         <Container>
           <Row className={styles.topContainer}>

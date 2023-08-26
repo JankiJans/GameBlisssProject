@@ -12,6 +12,9 @@ function getProducts() {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac sem congue, venenatis nulla eu.',
       producent: 'EA Sports',
       image: 'FIFA23main.jpg',
+      rating: 3,
+      secondImage: 'FIFA23main2.jpg',
+      thirdImage: 'FIFA23main3.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17234',
@@ -22,6 +25,9 @@ function getProducts() {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac sem congue, venenatis nulla eu.',
       producent: 'RockStar Games',
       image: 'GTAVmain.jpg',
+      rating: 4,
+      secondImage: 'GTAVmain2.jpg',
+      thirdImage: 'GTAVmain3.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17345',
@@ -32,6 +38,9 @@ function getProducts() {
         '"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac sem congue, venenatis nulla eu.',
       producent: 'Mojang Studios',
       image: 'MINCECRAFTmain.jpg',
+      rating: 5,
+      secondImage: 'MINCECRAFTmain2.jpg',
+      thirdImage: 'MINCECRAFTmain3.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17456',
@@ -42,6 +51,9 @@ function getProducts() {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac sem congue, venenatis nulla eu.',
       producent: 'Facepunch Studios',
       image: 'RUSTmain.jpg',
+      rating: 5,
+      secondImage: 'RUSTmain2.jpg',
+      thirdImage: 'RUSTmain3.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17567',
@@ -52,6 +64,9 @@ function getProducts() {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac sem congue, venenatis nulla eu.',
       producent: 'Rockstar Games',
       image: 'RDR2main.jpg',
+      rating: 4,
+      secondImage: 'RDR2main2.jpg',
+      thirdImage: 'RDR2main3.jpg',
     },
     {
       id: 'fd105551-0f0d-4a9f-bc41-c559c8a17678',
@@ -62,6 +77,38 @@ function getProducts() {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac sem congue, venenatis nulla eu.',
       producent: 'Blizzard Entertainment',
       image: 'WOWDFmain.jpg',
+      rating: 5,
+      secondImage: 'WOWDFmain2.jpg',
+      thirdImage: 'WOWDFmain3.jpg',
+
+    },
+    {
+      id: 'fd105551-0f0d-4a9f-bc41-c559c8a17789',
+      name: 'Witcher 3',
+      category: 'MMORPG',
+      price: 80,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac sem congue, venenatis nulla eu.',
+      producent: 'CD Projekt Red',
+      image: 'WITCHER3main.jpg',
+      rating: 5,
+      secondImage: 'WITCHER3main2.jpg',
+      thirdImage: 'WITCHER3main3.jpg',
+
+    },
+    {
+      id: 'fd105551-0f0d-4a9f-bc41-c559c8a17890',
+      name: 'NBA2K23',
+      category: 'Sports',
+      price: 60,
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac sem congue, venenatis nulla eu.',
+      producent: '2K Games',
+      image: 'NBA2K23main.jpg',
+      rating: 3,
+      secondImage: 'NBA2K23main2.jpg',
+      thirdImage: 'NBA2K23main3.jpg',
+
     },
   ];
 }
@@ -73,7 +120,23 @@ function getImages() {
       productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17123',
     },
     {
+      image: 'FIFA23gallery2.jpg',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17123',
+    },
+    {
+      image: 'FIFA23gallery3.jpg',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17123',
+    },
+    {
       image: 'GTAVgallery.jpg',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17234',
+    },
+    {
+      image: 'GTAVgallery2.jpg',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17234',
+    },
+    {
+      image: 'GTAVgallery3.jpg',
       productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17234',
     },
     {
@@ -81,7 +144,23 @@ function getImages() {
       productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17345',
     },
     {
+      image: 'MINECRAFTgallery2.jpg',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17345',
+    },
+    {
+      image: 'MINECRAFTgallery3.jpg',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17345',
+    },
+    {
       image: 'RUSTgallery.jpg',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17456',
+    },
+    {
+      image: 'RUSTgallery2.jpg',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17456',
+    },
+    {
+      image: 'RUSTgallery3.jpg',
       productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17456',
     },
     {
@@ -89,10 +168,119 @@ function getImages() {
       productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17567',
     },
     {
+      image: 'RDR2gallery2.jpg',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17567',
+    },
+    {
+      image: 'RDR2gallery3.jpg',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17567',
+    },
+    {
       image: 'WOWDFgallery.jpg',
       productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17678',
     },
+    {
+      image: 'WOWDFgallery2.jpg',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17678',
+    },
+    {
+      image: 'WOWDFgallery3.jpg',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17678',
+    },
+    {
+      image: 'WITCHER3gallery.jpg',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17789',
+    },
+    {
+      image: 'WITCHER3gallery2.jpg',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17789',
+    },
+    {
+      image: 'WITCHER3gallery3.jpg',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17789',
+    },
+    {
+      image: 'NBA2K23gallery.jpg',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17890',
+    },
+    {
+      image: 'NBA2K23gallery2.jpg',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17890',
+    },
+    {
+      image: 'NBA2K23gallery3.jpg',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17890',
+    },
   ];
+}
+
+function getRequirements() {
+  return [
+    {
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17123',
+      system: 'Windows 10',
+      processor: 'Intel Core I9',
+      graphics: 'RTX 2070 8GB',
+      memory: '6GB RAM',
+      space: '50GB',
+    },
+    {
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17234',
+      system: 'Windows 10',
+      processor: 'Intel Core I8',
+      graphics: 'RTX 2070 8GB',
+      memory: '6GB RAM',
+      space: '50GB',
+    },
+    {
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17345',
+      system: 'Windows 10',
+      processor: 'Intel Core I8',
+      graphics: 'RTX 2070 8GB',
+      memory: '6GB RAM',
+      space: '50GB',
+    },
+    {
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17456',
+      system: 'Windows 10',
+      processor: 'Intel Core I8',
+      graphics: 'RTX 2070 8GB',
+      memory: '6GB RAM',
+      space: '50GB',
+    },
+    {
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17567',
+      system: 'Windows 10',
+      processor: 'Intel Core I8',
+      graphics: 'RTX 2070 8GB',
+      memory: '6GB RAM',
+      space: '50GB',
+    },
+    {
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17678',
+      system: 'Windows 10',
+      processor: 'Intel Core I8',
+      graphics: 'RTX 2070 8GB',
+      memory: '6GB RAM',
+      space: '50GB',
+    },
+    {
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17789',
+      system: 'Windows 10',
+      processor: 'Intel Core I8',
+      graphics: 'RTX 2070 8GB',
+      memory: '6GB RAM',
+      space: '50GB',
+    },
+    {
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17890',
+      system: 'Windows 10',
+      processor: 'Intel Core I8',
+      graphics: 'RTX 2070 8GB',
+      memory: '6GB RAM',
+      space: '50GB',
+    }
+  ]
 }
 
 async function seed() {
@@ -105,6 +293,19 @@ async function seed() {
   await Promise.all(
     getImages().map(({ productId, ...orderData }) => {
       return db.images.create({
+        data: {
+          ...orderData,
+          product: {
+            connect: { id: productId },
+          },
+        },
+      });
+    }),
+  );
+
+  await Promise.all(
+    getRequirements().map(({ productId, ...orderData }) => {
+      return db.requirements.create({
         data: {
           ...orderData,
           product: {

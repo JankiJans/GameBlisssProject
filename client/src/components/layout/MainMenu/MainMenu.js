@@ -1,34 +1,42 @@
-import React from 'react';
-import { NavLink, Container } from 'reactstrap';
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import { IMAGES_URL } from '../../../config';
 
-import styles from './MainMenu.module.scss';
-
-const MainMenu = () => {
+function OffcanvasExample() {
   return (
-    <div className={styles.mainMenu}>
-      <div className={styles.background}>      
-          <Container>
-            <div className={styles.top}>
-              <div>
-                <h1>GameBliss</h1>
-              </div>
-              <div className={styles.buttonsContainer}>
-                <NavLink href="/login"><Button variant="warning">Logowanie</Button></NavLink>
-                <NavLink href="/register"><Button variant="warning">Rejestracja</Button></NavLink>
-              </div>
-            </div>
-            <div className={styles.content}>
-              <h1>BEST GAMES BEST PRICES!</h1>
-              <p>TEST 2</p>
-              <NavLink to="/register">
-                <Button>DOŁĄCZ DO NAS</Button>
-              </NavLink>
-            </div>
+    <>
+      {['sm'].map((sm) => (
+        <Navbar key={sm} expand={sm} className="bg-body-tertiary">
+          <Container fluid>
+            <Navbar.Brand href="/">GameBLiss</Navbar.Brand>
+            <Navbar.Toggle aria-controls={`offcanvasNavbar-sm-${sm}`} />
+            <Navbar.Offcanvas
+              id={`offcanvasNavbar-sm-${sm}`}
+              aria-labelledby={`offcanvasNavbarLabel-sm-${sm}`}
+              placement="end"
+            >
+              <Offcanvas.Header closeButton>
+                <Offcanvas.Title id={`offcanvasNavbarLabel-sm-${sm}`}>
+                  Offcanvas
+                </Offcanvas.Title>
+              </Offcanvas.Header>
+              <Offcanvas.Body>
+                <Nav className="justify-content-end flex-grow-1 pe-3">
+                  <Nav.Link href="#action1">Home</Nav.Link>
+                  <Nav.Link href="#action2">Link</Nav.Link>
+                </Nav>
+              </Offcanvas.Body>
+            </Navbar.Offcanvas>
           </Container>
-      </div>
-    </div>
+        </Navbar>
+      ))}
+    </>
   );
-};
+}
 
-export default MainMenu;
+export default OffcanvasExample;
