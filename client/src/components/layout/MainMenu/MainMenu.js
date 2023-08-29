@@ -1,19 +1,25 @@
-import Button from 'react-bootstrap/Button';
+import React from 'react';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { IMAGES_URL } from '../../../config';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import styles from './MainMenu.module.scss';
+import { getCart } from '../../../redux/cartRedux';
+import { useSelector } from 'react-redux';
 
 function OffcanvasExample() {
+  const cartItems = useSelector(getCart)
+  console.log(cartItems)
+
   return (
     <>
       {['sm'].map((sm) => (
         <Navbar key={sm} expand={sm} className="bg-body-tertiary">
           <Container fluid>
-            <Navbar.Brand href="/">GameBLiss</Navbar.Brand>
+            <Navbar.Brand><Link to="/" className={styles.brand}>GameBLiss</Link></Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-sm-${sm}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-sm-${sm}`}
@@ -27,8 +33,12 @@ function OffcanvasExample() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <Nav.Link href="#action1">Home</Nav.Link>
-                  <Nav.Link href="#action2">Link</Nav.Link>
+                  <div className={styles.cart}>
+                  <Link to="/cart" className={styles.cartIcon}>
+                    <FontAwesomeIcon icon={faShoppingCart} className="me-2" />
+                  </Link>
+                  <span>{cartItems.length}</span>
+                  </div>
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

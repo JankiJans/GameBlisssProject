@@ -1,14 +1,21 @@
 .hoverCard {
-    transition: filter 0.3s;
-  }
-  
-  .hoverCard:hover {
-    filter: brightness(50%);
-  }
-  
+  transition: filter 0.3s;
+}
 
-  .addToCartButton {
-    width: 50%;
-    margin: 0 auto;
-    margin-bottom: 10px
-  }
+.hoverCard:hover {
+  filter: brightness(50%);
+}
+
+.addToCartButton {
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.categoryBackground {
+  display: inline-block;
+  background-color: #d3d3d3;
+  border-radius: 10px;
+  padding: 4px 8px;
+  margin-right: 8px;
+}

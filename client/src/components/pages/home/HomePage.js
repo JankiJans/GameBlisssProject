@@ -3,6 +3,7 @@ import Games from '../games/Games';
 import styles from './HomePage.module.scss';
 import SearchBar from '../../features/SearchBar/SearchBar';
 import Content from '../../layout/Content/Content';
+import InformationTiles from '../../layout/InformationTiles/InformationTiles';
 
 const HomePage = () => {
   return (
@@ -22,6 +23,7 @@ const HomePage = () => {
             </Col>
           </Row>
         </Container>
+        <InformationTiles />
       </div>
     </div>
   );

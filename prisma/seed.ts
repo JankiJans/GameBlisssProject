@@ -283,10 +283,72 @@ function getRequirements() {
   ]
 }
 
+function getOrders() {
+  return [
+    {
+      id: 'fd105551-0f0d-4a9f-bc41-c559c8a17260',
+      clientId: '0ca70f17-2b31-40df-883b-dffb7e13c457',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17123',
+    },
+    {
+      id: 'fd105551-0f0d-4a9f-bc41-c559c8a17261',
+      clientId: '65d9199d-cc52-4e35-990e-5bb516bee490',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17234',
+    },
+  ];
+}
+
+function getClients() {
+  return [
+    {
+      id: '0ca70f17-2b31-40df-883b-dffb7e13c457',
+      name: 'Mikolaj Kopernik',
+      amount: 1,
+      email: 'testowyemail4@gmail.com',
+      address: 'Hollywood',
+      payment: 'card',
+      delivery: 'plane',
+      note: 'i want premium model of this product',
+    },
+    {
+        id: '65d9199d-cc52-4e35-990e-5bb516bee490',
+        name: 'Travis Kowalski',
+        amount: 2,
+        email: 'testowyemail6@gmail.com',
+        address: 'Texas',
+        payment: 'cash',
+        delivery: 'ship',
+        note: 'i just want the prouct',
+    },
+  ];
+}
+
 async function seed() {
   await Promise.all(
     getProducts().map((product) => {
       return db.product.create({ data: product });
+    }),
+  );
+
+  await Promise.all(
+    getClients().map((client) => {
+        return db.client.create({ data: client})
+    })
+  )
+
+  await Promise.all(
+    getOrders().map(({ productId, clientId, ...orderData }) => {
+      return db.orderItem.create({
+        data: {
+          ...orderData,
+          product: {
+            connect: { id: productId },
+          },
+          client: {
+            connect: {id: clientId},
+          }
+        },
+      });
     }),
   );
 

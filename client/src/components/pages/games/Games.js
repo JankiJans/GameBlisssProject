@@ -9,6 +9,8 @@ import styles from './Games.module.scss';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import Stars from '../../features/Stars/Stars';
+
 
 const FeatureProduct = () => {
   const [isLoading, setLoading] = useState(false);
@@ -63,14 +65,12 @@ const FeatureProduct = () => {
                   className={styles.hoverCard}
                 />
               </a>
-              <Card.Body style={{ height: '150px' }}>
+              <Card.Body style={{ height: '150px' }} className='mb-3'>
                 <Card.Title>{shortenTitle(prod.name, 22)}</Card.Title>
-                <Card.Text>{prod.category}</Card.Text>
-                <Card.Text>From {prod.price},99$</Card.Text>
+                <Card.Text><Stars rating={prod.rating}/></Card.Text>
+                <Card.Text className={`${styles.categoryBackground} mb-2`}>{prod.category}</Card.Text>
+                <Card.Text>From <b>{prod.price},99$</b></Card.Text>
               </Card.Body>
-              <Button variant="primary" className={`${styles.addToCartButton} d-flex justify-content-center`} >
-                  <FontAwesomeIcon icon={faShoppingCart} />
-              </Button>
             </Card>
           </div>
         ))}

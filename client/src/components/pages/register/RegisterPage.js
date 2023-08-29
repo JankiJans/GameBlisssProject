@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { API_URL } from '../../../config'
 
 const Register = () => {
-  const [login, setLogin] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [passwordRepeat, setPasswordRepeat] = useState('')
   
@@ -15,38 +15,37 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const fd = new FormData()
-    fd.append('login', login)
-    fd.append('password', password)
-    fd.append('passwordRepeat', passwordRepeat)
+    const requestData = {
+      email,
+      password,
+      passwordRepeat
+    }
 
     const options = {
-        method: 'POST',
-        credentials: "include",
-        body: fd,
+      method: 'POST',
+      credentials: "include",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestData),
     }
 
     setStatus('loading')
     fetch(`${API_URL}/auth/register`, options)
       .then(res => {
         if (res.status === 201) {
-          setStatus('success');
-
+          setStatus('success')
         } else if (res.status === 400) {
           setStatus('clientError')
-
-        } else if (res.status === 409){
+        } else if (res.status === 409) {
           setStatus('loginError')
-
         } else {
           setStatus('serverError')
         }
       })
-
       .catch(err => {
         setStatus('serverError')
       })
-
   }
 
   return (
@@ -90,8 +89,8 @@ const Register = () => {
         )}
 
         <Form.Group className='mb-3' controlId='formLogin'>
-          <Form.Label>Login</Form.Label>
-          <Form.Control type='text' placeholder='Enter login' value={login} onChange={e => setLogin(e.target.value)}/>
+          <Form.Label>email</Form.Label>
+          <Form.Control type='text' placeholder='Enter email' value={email} onChange={e => setEmail(e.target.value)}/>
         </Form.Group>
 
         <Form.Group className='mb-3' controlId='formPassword'>
@@ -99,9 +98,9 @@ const Register = () => {
           <Form.Control type='password' placeholder='Password' value={password} onChange={e => setPassword(e.target.value)}/>
         </Form.Group>
 
-        <Form.Group className='mb-3' controlId='formPhone'>
-          <Form.Label>passwordRepeat</Form.Label>
-          <Form.Control type='password' placeholder='Phone number' value={passwordRepeat} onChange={e => setPasswordRepeat(e.target.value)}/>
+        <Form.Group className='mb-3' controlId='formPassword'>
+          <Form.Label>Repeat Password</Form.Label>
+          <Form.Control type='password' placeholder='Repeat password' value={passwordRepeat} onChange={e => setPasswordRepeat(e.target.value)}/>
         </Form.Group>
 
 

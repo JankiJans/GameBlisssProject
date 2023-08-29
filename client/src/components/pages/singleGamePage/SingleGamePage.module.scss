@@ -15,6 +15,14 @@
 
 }
 
+.addToCartButton {
+  transition: transform 1s; 
+}
+
+.addToCartButton:hover {
+  transform: scale(1.1);
+}
+
 .boxImage {
   height: 450px;
   object-fit: cover;
@@ -29,3 +37,37 @@
     width: 100%;
     object-fit: cover;
 }
+
+.stars {
+    font-size: 20px;
+}
+
+.description {
+    padding-top: 20px
+}
+
+.categoryBackground {
+    display: inline-block;
+    background-color: #d81414; 
+    border-radius: 10px; 
+    padding: 4px 8px; 
+    margin-right: 8px; 
+    margin-top: 20px;
+  }
+
+  .producentBackground {
+    display: inline-block;
+    background-color: #1594dd; 
+    border-radius: 10px; 
+    padding: 4px 8px; 
+    margin-right: 8px; 
+   
+  }
+
+  .addToCart {
+    margin-top: 40px;
+  }
+
+  .addToCartButton {
+    width: 150px;
+  }
