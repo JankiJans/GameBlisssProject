@@ -5,6 +5,7 @@ import HomePage from "./components/pages/home/HomePage";
 import SeeMore from "./components/pages/singleGamePage/SingleGamePage";
 import Login from "./components/pages/login/loginPage";
 import Cart from "./components/pages/cart/Cart";
+import Orders from "./components/pages/orders/Orders";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -30,9 +31,10 @@ function App() {
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem('loggedInUser');
+    const loggedInUserId = localStorage.getItem('loggedInUserId');
 
     if (loggedInUser) {
-      dispatch(logIn({ email: loggedInUser }));
+      dispatch(logIn({ email: loggedInUser, id: loggedInUserId }));
     }
   }, [dispatch]);
 
@@ -44,6 +46,7 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/products/:id" element={<SeeMore/>} />
       <Route path="/cart" element={<Cart/>} />
+      <Route path="/order" element={<Orders/>} />
       </Routes>
     </MainLayout>
   );

@@ -45,9 +45,21 @@ model Requirements {
   productId String
 }
 
+model OrderItem {
+  id        String  @id @default(uuid())
+  client    Client?  @relation(fields: [clientId], references: [id])
+  clientId  String?
+  product   Product? @relation(fields: [productId], references: [id])
+  productId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Client {
   id         String      @id @default(uuid())
   amount     Int
+  quantity   Int
   email      String
   name       String
   address    String
@@ -55,17 +67,6 @@ model Client {
   delivery   String
   note       String
   orderItems OrderItem[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model OrderItem {
-  id        String  @id @default(uuid())
-  client    Client  @relation(fields: [clientId], references: [id])
-  clientId  String
-  product   Product @relation(fields: [productId], references: [id])
-  productId String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -10,7 +10,11 @@ import { useEffect } from 'react';
 const Cart = () => {
   const cartProds = useSelector(getCart);
   console.log(cartProds);
+  
   const currentUser = localStorage.getItem('loggedInUser');
+  console.log(currentUser)
+  const currentUserId = localStorage.getItem('loggedInUserId');
+  console.log(currentUserId)
 
   const [cartData, setCartData] = useState([]);
 
@@ -89,7 +93,7 @@ const Cart = () => {
                     </div>
                     <div className={styles.subTotalInfo}>
                       <h5>Taxes and shipping calculated at checkout</h5>
-                      <Button className={styles.subTotalButton}>Checkout</Button>
+                      <Link to='/order'><Button className={styles.subTotalButton}>Checkout</Button></Link>
                     </div>
                   </div>
                 </div>

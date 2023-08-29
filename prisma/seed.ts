@@ -302,9 +302,10 @@ function getClients() {
   return [
     {
       id: '0ca70f17-2b31-40df-883b-dffb7e13c457',
-      name: 'Mikolaj Kopernik',
       amount: 1,
+      quantity: 1,
       email: 'testowyemail4@gmail.com',
+      name: 'Mikolaj Kopernik',
       address: 'Hollywood',
       payment: 'card',
       delivery: 'plane',
@@ -312,12 +313,13 @@ function getClients() {
     },
     {
         id: '65d9199d-cc52-4e35-990e-5bb516bee490',
-        name: 'Travis Kowalski',
-        amount: 2,
+        amount: 1,
+        quantity: 1,
         email: 'testowyemail6@gmail.com',
+        name: 'Travis Kowalski',
         address: 'Texas',
         payment: 'cash',
-        delivery: 'ship',
+        delivery: 'UPS',
         note: 'i just want the prouct',
     },
   ];
@@ -327,28 +329,6 @@ async function seed() {
   await Promise.all(
     getProducts().map((product) => {
       return db.product.create({ data: product });
-    }),
-  );
-
-  await Promise.all(
-    getClients().map((client) => {
-        return db.client.create({ data: client})
-    })
-  )
-
-  await Promise.all(
-    getOrders().map(({ productId, clientId, ...orderData }) => {
-      return db.orderItem.create({
-        data: {
-          ...orderData,
-          product: {
-            connect: { id: productId },
-          },
-          client: {
-            connect: {id: clientId},
-          }
-        },
-      });
     }),
   );
 
@@ -373,6 +353,28 @@ async function seed() {
           product: {
             connect: { id: productId },
           },
+        },
+      });
+    }),
+  );
+
+  await Promise.all(
+    getClients().map((client) => {
+        return db.client.create({ data: client})
+    })
+  )
+
+  await Promise.all(
+    getOrders().map(({ productId, clientId, ...orderData }) => {
+      return db.orderItem.create({
+        data: {
+          ...orderData,
+          product: {
+            connect: { id: productId },
+          },
+          client: {
+            connect: {id: clientId},
+          }
         },
       });
     }),

@@ -1,4 +1,4 @@
-import { Injectable, BadRequestException, ConflictException } from '@nestjs/common';
+import { Injectable, ConflictException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Product } from '@prisma/client';
 

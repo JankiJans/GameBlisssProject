@@ -12,14 +12,18 @@ export class CreateOrderDTO {
   @IsString()
   clientId: string;
 
-  @IsNotEmpty()
-  @IsString()
-  @Length(5, 30)
-  client: string;
+  // @IsNotEmpty()
+  // @IsString()
+  // @Length(5, 30)
+  // client: string;
 
   @IsNotEmpty()
   @IsNumber()
   amount: number
+
+  @IsNotEmpty()
+  @IsNumber()
+  quantity: number
 
   @IsNotEmpty()
   @IsString()
