@@ -13,6 +13,7 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [status, setStatus] = useState(null)
+  const [id, setId] = useState('')
 
   const navigate = useNavigate()
 
@@ -34,7 +35,7 @@ const Login = () => {
       .then(res => {
         if(res.status === 201) {
           setStatus('success')
-          dispatch(logIn({ email }))
+          dispatch(logIn({ email, id}))
         //   navigate('/')
         } else if(res.status === 400) {
           setStatus('clientError')

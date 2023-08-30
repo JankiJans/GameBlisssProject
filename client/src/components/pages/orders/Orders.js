@@ -31,7 +31,7 @@ const Orders = () => {
   function getTotalQuantity() {
     let totalQuantity = 0;
     cartData.forEach((product) => {
-      totalQuantity += product.value; // Use the 'value' property of the product to get the quantity
+      totalQuantity += product.value;
     });
     return totalQuantity;
   }
@@ -48,16 +48,16 @@ const Orders = () => {
     e.preventDefault();
 
     const requestData = {
+      clientId: 'd76485e9-9187-4183-b60c-3e83051891bc',
+      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17345',
       amount: getTotalPrice(),
+      quantity: getTotalQuantity(),
       email,
       name,
-      quantity: getTotalQuantity(),
       address,
       payment,
       delivery,
       note,
-      clientId: currentUser.userId,
-      productId: cart.map(product => product.product.id),
     };
 
     const options = {
@@ -188,7 +188,7 @@ const Orders = () => {
       <Form.Group className="mb-3" controlId="formAmount">
         <Form.Label>Total Amount</Form.Label>
         <Form.Control
-         type="number"
+          type="number"
           placeholder="Total amount"
           value={getTotalPrice()}
           onChange={(e) => setAmount(e.target.value)}

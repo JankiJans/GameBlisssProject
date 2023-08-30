@@ -12,11 +12,6 @@ export class CreateOrderDTO {
   @IsString()
   clientId: string;
 
-  // @IsNotEmpty()
-  // @IsString()
-  // @Length(5, 30)
-  // client: string;
-
   @IsNotEmpty()
   @IsNumber()
   amount: number
@@ -35,7 +30,6 @@ export class CreateOrderDTO {
 
   @IsNotEmpty()
   @IsString()
-  @Transform(({ value }) => (Array.isArray(value) ? value.join(', ') : ''))
   address: string;
 
   @IsNotEmpty()

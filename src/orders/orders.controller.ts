@@ -1,6 +1,7 @@
 import { Controller, Get, Param, Put, Post, Body, ParseUUIDPipe, NotFoundException, Delete } from '@nestjs/common';
 import { OrdersService } from './orders.service';
 import { CreateOrderDTO } from './dtos/create-dtos.dto';
+import { Client, OrderItem } from '@prisma/client';
 
 @Controller('orders')
 export class OrdersController {
@@ -22,4 +23,5 @@ export class OrdersController {
   create(@Body() orderData: CreateOrderDTO) {
     return this.ordersService.create(orderData);
   }
+
 }

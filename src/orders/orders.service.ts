@@ -1,18 +1,26 @@
-import { Injectable, BadRequestException} from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  ConflictException,
+} from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { OrderItem } from '@prisma/client';
+import { OrderItem, Client } from '@prisma/client';
+import { CreateOrderDTO } from './dtos/create-dtos.dto';
 
 @Injectable()
 export class OrdersService {
   constructor(private prismaService: PrismaService) {}
 
   public getAll(): Promise<OrderItem[]> {
-    return this.prismaService.orderItem.findMany({ include: { product: true, client: true } });
+    return this.prismaService.orderItem.findMany({
+      include: { product: true, client: true },
+    });
   }
 
   public getById(id: OrderItem['id']): Promise<OrderItem | null> {
     return this.prismaService.orderItem.findUnique({
-      where: { id }, include: { product: true, client: true }
+      where: { id },
+      include: { product: true, client: true },
     });
   }
 
@@ -39,3 +47,9 @@ export class OrdersService {
     }
   }
 }
+  
+  
+
+
+
+
