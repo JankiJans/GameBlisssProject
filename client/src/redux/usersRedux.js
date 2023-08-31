@@ -1,6 +1,6 @@
 // selectors
-export const getUser = (state) => state.email;
-export const getUserById = (state) => state.id;
+// export const getUser = (state) => state.email;
+// export const getUserById = (state) => state.id;
 
 // actions
 const createActionName = (actionName) => `app/users/${actionName}`;

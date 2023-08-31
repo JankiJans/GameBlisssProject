@@ -19,6 +19,8 @@ const Orders = () => {
   const [cartData, setCartData] = useState([]);
 
   const currentUser = localStorage.getItem('loggedInUser');
+  const currenUserId = localStorage.getItem('loggedInUserId');
+  console.log(currenUserId)
   const cart = useSelector(getCart);
 
   useEffect(() => {
@@ -43,13 +45,15 @@ const Orders = () => {
     });
     return totalPrice;
   }
+  const firstProductId = cartData.length > 0 ? cartData[0].product.id : null;
+  const productIds = cartData.map(product => product.product.id);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const requestData = {
-      clientId: 'd76485e9-9187-4183-b60c-3e83051891bc',
-      productId: 'fd105551-0f0d-4a9f-bc41-c559c8a17345',
+      clientId: currenUserId,
+      productId: productIds,
       amount: getTotalPrice(),
       quantity: getTotalQuantity(),
       email,

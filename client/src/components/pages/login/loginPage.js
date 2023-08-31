@@ -32,21 +32,20 @@ const Login = () => {
     }
     setStatus('loading')
     fetch(`${API_URL}/auth/login`, options)
-      .then(res => {
-        if(res.status === 201) {
-          setStatus('success')
-          dispatch(logIn({ email, id}))
-        //   navigate('/')
-        } else if(res.status === 400) {
-          setStatus('clientError')
-        } else {
-          setStatus('serverError')
-        }
-      })
-      .catch(err => {
-        setStatus('serverError')
-      })
-  }
+    .then(res => res.json())
+    .then(data => {
+      if(data.message === 'success') {
+        const { email, id } = data.user;
+        dispatch(logIn({ email, id }));
+        setStatus('success');
+      } else {
+        setStatus('serverError');
+      }
+    })
+    .catch(err => {
+      setStatus('serverError');
+    });
+}
 
 
   return (

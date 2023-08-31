@@ -32,8 +32,8 @@ function App() {
   useEffect(() => {
     const loggedInUser = localStorage.getItem('loggedInUser');
     const loggedInUserId = localStorage.getItem('loggedInUserId');
-
-    if (loggedInUser) {
+  
+    if (loggedInUser && loggedInUserId) {
       dispatch(logIn({ email: loggedInUser, id: loggedInUserId }));
     }
   }, [dispatch]);

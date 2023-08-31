@@ -28,8 +28,13 @@ export class AuthController {
     res.cookie('auth', tokens, { httpOnly: true });
     res.send({
       message: 'success',
+      user: {
+        email: req.user.email,
+        id: req.user.id
+      }
     });
   }
+  
 
   @UseGuards(JwtAuthGuard)
   @Delete('logout')
