@@ -6,12 +6,12 @@ import styles from './RegisterPage.module.scss'
 import { API_URL } from '../../../config'
 
 const Register = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [passwordRepeat, setPasswordRepeat] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordRepeat, setPasswordRepeat] = useState('');
   
   
-  const [status, setStatus] = useState(null) //null, loading, succes, serverError, clientError, loginError
+  const [status, setStatus] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -36,6 +36,9 @@ const Register = () => {
       .then(res => {
         if (res.status === 201) {
           setStatus('success')
+          setTimeout(() => {
+            window.location.href = '/login';
+          }, 2000);
         } else if (res.status === 400) {
           setStatus('clientError')
         } else if (res.status === 409) {
@@ -51,7 +54,7 @@ const Register = () => {
 
   return (
     <div className={styles.body}>
-      <Form className="col-12 col-sm-3 mx-auto pt-5" onSubmit={handleSubmit}>
+      <Form className="col-12 col-sm-6 mx-auto" onSubmit={handleSubmit}>
 
         <h1 className='my-4'>Sign up</h1>
 
@@ -90,7 +93,7 @@ const Register = () => {
         )}
 
         <Form.Group className='mb-3' controlId='formLogin'>
-          <Form.Label>email</Form.Label>
+          <Form.Label>Email</Form.Label>
           <Form.Control type='text' placeholder='Enter email' value={email} onChange={e => setEmail(e.target.value)}/>
         </Form.Group>
 

@@ -14,7 +14,7 @@ import { logOut } from '../../../redux/usersRedux';
 function OffcanvasExample() {
   const cartItems = useSelector(getCart);
   const currentUser = localStorage.getItem('loggedInUser');
-  
+
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -41,7 +41,7 @@ function OffcanvasExample() {
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-sm-${sm}`}>
-                  Offcanvas
+                  Menu
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>

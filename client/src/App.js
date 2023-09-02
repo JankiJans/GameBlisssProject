@@ -8,6 +8,7 @@ import Cart from "./components/pages/cart/Cart";
 import Orders from "./components/pages/orders/Orders";
 import LogoutPage from "./components/features/logout/Logout";
 import { Routes, Route } from "react-router-dom";
+import NotFound from "./components/pages/notFound/NotFound";
 
 import { logIn } from "./redux/usersRedux";
 import { useDispatch } from 'react-redux';
@@ -48,6 +49,7 @@ function App() {
       <Route path="/cart" element={<Cart/>} />
       <Route path="/order" element={<Orders/>} />
       <Route path="/logout" element={<LogoutPage/>}/>
+      <Route path="*" element={<NotFound/>}/>
       </Routes>
     </MainLayout>
   );

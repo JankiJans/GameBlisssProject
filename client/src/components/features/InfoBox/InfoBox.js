@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faKey, faUserSecret } from '@fortawesome/free-solid-svg-icons';
-import { Container, Row, Col } from 'react-bootstrap'; // Importujemy komponenty z Bootstrap
+import { Container, Row, Col } from 'react-bootstrap';
 import styles from './InfoBox.module.scss'
 
 function InfoBox() {
@@ -10,27 +10,27 @@ function InfoBox() {
       <Container>
       <div className={styles.column}>
         <Row>         
-          <Col>
+        <div className="col-md-4 col-sm-12">
             <div className="text-center">
               <FontAwesomeIcon icon={faShoppingCart} className={`mb-3 ${styles.infoIcon}`} />
               <h4>Lorem ipsum</h4>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
-          </Col>
-          <Col>
+          </div>
+          <div className="col-md-4 col-sm-12">
             <div className="text-center">
               <FontAwesomeIcon icon={faKey} className={`mb-3 ${styles.infoIcon}`} />
               <h4>Lorem ipsum</h4>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
-          </Col>
-          <Col>
+          </div>
+          <div className="col-md-4 col-sm-12">
             <div className="text-center">
               <FontAwesomeIcon icon={faUserSecret} className={`mb-3 ${styles.infoIcon}`} />
               <h4>Lorem ipsum</h4>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
-          </Col>
+          </div>
         </Row>
         </div>
       </Container>

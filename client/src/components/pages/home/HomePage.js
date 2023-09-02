@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <div>
       <Content/>
-      <div style={{ backgroundColor: '#040D12' }}>
+      <div className={styles.body}>
         <Container>
           <Row className={styles.topContainer}>
             <div className={styles.top}>

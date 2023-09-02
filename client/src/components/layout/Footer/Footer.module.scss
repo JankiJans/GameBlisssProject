@@ -1,7 +1,30 @@
-.footer {
-    
-}
-
 a {
     text-decoration: none;
 }
+/* Footer.module.scss */
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+  }
+  
+  @media (max-width: 767px) {
+    .footer {
+      padding: 20px 15px;
+    }
+  
+    .col-md-4 {
+      order: 2;
+      margin-top: 15px;
+    }
+    
+    .col-md-8 {
+      order: 1;
+    }
+  
+    .d-flex.justify-content-start,
+    .d-flex.justify-content-end {
+      justify-content: center;
+    }
+  }
+  

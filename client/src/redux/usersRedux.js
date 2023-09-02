@@ -1,7 +1,3 @@
-// selectors
-// export const getUser = (state) => state.email;
-// export const getUserById = (state) => state.id;
-
 // actions
 const createActionName = (actionName) => `app/users/${actionName}`;
 const LOG_IN = createActionName('LOG_IN');

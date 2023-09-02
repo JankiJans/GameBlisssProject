@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { IMAGES_URL } from '../../../config';
 import { API_URL } from '../../../config';
 import { useEffect } from 'react';
-import { Container, Image, Card, Button, Toast } from 'react-bootstrap'; // Dodaliśmy Button
+import { Container, Image, Button, Toast, Table } from 'react-bootstrap';
 import styles from './SingleGamePage.module.scss';
 import { Carousel } from 'react-bootstrap';
 import Stars from '../../features/Stars/Stars';
@@ -39,16 +39,28 @@ const SingleGamePage = () => {
 
   const handleAddCart = async () => {
     const data = { id: shortid(), value, product: prod };
-    dispatch(addCart(data));
-    console.log(data);
-    if (!localStorage.getItem('cart')) {
-      localStorage.setItem('cart', '[]');
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existingProductIndex = cart.findIndex(
+      (item) => item.product.id === prod.id,
+    );
+
+    if (existingProductIndex !== -1) {
+      console.log('Product already in cart');
+      setStatus('failure');
+      setShowToast(true);
+      return;
+    } else {
+      dispatch(addCart(data));
+      console.log(data);
+      if (!localStorage.getItem('cart')) {
+        localStorage.setItem('cart', '[]');
+      }
+      cart.push(data);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      setStatus('success');
+      setShowToast(true);
     }
-    let cart = JSON.parse(localStorage.getItem('cart'));
-    cart.push(data);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    setStatus('succes');
-    setShowToast(true);
   };
 
   if (!prod) {
@@ -56,7 +68,7 @@ const SingleGamePage = () => {
   }
 
   return (
-    <div style={{ backgroundColor: '#040D12', minHeight: '100vh' }}>
+    <div className={styles.body}>
       <Container>
         <div className={styles.gameBox}>
           <div className={styles.imagesBox}>
@@ -71,15 +83,17 @@ const SingleGamePage = () => {
               <Stars rating={prod.rating} />
             </div>
             <div className={styles.description}>
-              <p>{prod.description}</p>
+              <h6>{prod.description}</h6>
             </div>
             <div>
-              <p className={styles.categoryBackground}>{prod.category}</p>
+              <h5 className={styles.categoryBackground}>{prod.category}</h5>
             </div>
             <div>
-              <p className={styles.producentBackground}>{prod.producent}</p>
+              <h5 className={styles.producentBackground}>{prod.producent}</h5>
             </div>
-            <div className={styles.addToCart}>
+            <div
+              className={`${styles.addToCart} ${styles.whiteLineBelowButton}`}
+            >
               <Button
                 variant="warning"
                 className={styles.addToCartButton}
@@ -101,11 +115,21 @@ const SingleGamePage = () => {
                 zIndex: 1000,
               }}
             >
-              <Toast.Header className="bg-success text-white">
-                <strong className="me-auto">Success</strong>
+              <Toast.Header
+                className={`bg-${
+                  status === 'success' ? 'success' : 'danger'
+                } text-white`}
+              >
+                <strong className="me-auto">
+                  {status === 'success' ? 'Success' : 'Failure'}
+                </strong>
               </Toast.Header>
-              <Toast.Body className="bg-success">
-                Product has been added to your cart!
+              <Toast.Body
+                className={`bg-${status === 'success' ? 'success' : 'danger'}`}
+              >
+                {status === 'success'
+                  ? 'Product has been added to your cart!'
+                  : 'Product is already in your cart!'}
               </Toast.Body>
             </Toast>
           </div>
@@ -115,10 +139,41 @@ const SingleGamePage = () => {
           <Carousel>
             {prod.gallery.map((item) => (
               <Carousel.Item key={item.id}>
-                <img src={IMAGES_URL + item.image} />
+                <img src={IMAGES_URL + item.image} alt={item.name}/>
               </Carousel.Item>
             ))}
           </Carousel>
+        </div>
+        <div className={styles.systemRequirements}>
+          <h2>System Requirements</h2>
+          <Table
+            striped
+            bordered
+            hover
+            variant="dark"
+            className={styles.requirementTable}
+          >
+            <thead>
+              <tr>
+                <th>System</th>
+                <th>Processor</th>
+                <th>Graphics</th>
+                <th>Memory</th>
+                <th>Space</th>
+              </tr>
+            </thead>
+            <tbody>
+              {prod.systemRequirements.map((req) => (
+                <tr key={req.id}>
+                  <td>{req.system}</td>
+                  <td>{req.processor}</td>
+                  <td>{req.graphics}</td>
+                  <td>{req.memory}</td>
+                  <td>{req.space}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         </div>
       </Container>
     </div>

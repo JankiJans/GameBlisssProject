@@ -1,11 +1,9 @@
-import {Button, Form, Alert, Spinner} from 'react-bootstrap'
+import {Button, Form, Alert, Spinner, Container} from 'react-bootstrap'
 import { useState } from 'react'
 import { API_URL } from '../../../config'
 
 import { useDispatch } from 'react-redux'
 import { logIn } from '../../../redux/usersRedux'
-
-import { useNavigate } from 'react-router-dom'
 
 import styles from './loginPage.module.scss'
 
@@ -15,10 +13,7 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [status, setStatus] = useState(null)
-  const [id, setId] = useState('')
-
-  const navigate = useNavigate()
-
+  
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -55,7 +50,8 @@ const Login = () => {
 
   return (
     <div className={styles.body}>
-    <Form className="col-12 col-sm-3 mx-auto" onSubmit={handleSubmit}>
+      <Container>
+    <Form className="col-12 col-sm-6 mx-auto" onSubmit={handleSubmit}>
       <h1 className='py-5'>login</h1>
 
       {status === "success" && (
@@ -105,6 +101,7 @@ const Login = () => {
       <Button variant='warning' type='submit' className='mb-5'>Log in</Button>
 
     </Form>
+    </Container>
     </div>
     )
 }

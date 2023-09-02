@@ -52,6 +52,7 @@ const FeatureProduct = () => {
     return (
       <div className="py-5 d-flex flex-wrap">
         {allProducts.map((prod) => (
+          <div className={styles.test}>
           <div key={prod.id} style={{ width: '250px' }} className="mx-2 mb-5">
             <Card>
               <Link to={`/products/${prod.id}`}>
@@ -67,9 +68,10 @@ const FeatureProduct = () => {
                 <Card.Title>{shortenTitle(prod.name, 22)}</Card.Title>
                 <Card.Text><Stars rating={prod.rating}/></Card.Text>
                 <Card.Text className={`${styles.categoryBackground} mb-2`}>{prod.category}</Card.Text>
-                <Card.Text>From <b>{prod.price},99$</b></Card.Text>
+                <Card.Text>From <b>{prod.price}$</b></Card.Text>
               </Card.Body>
             </Card>
+          </div>
           </div>
         ))}
       </div>

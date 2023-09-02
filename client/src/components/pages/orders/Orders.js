@@ -88,12 +88,16 @@ const Orders = () => {
       .then((res) => {
         if (res.status === 201) {
           setStatus('success');
+          window.scrollTo(0, 0);
         } else if (res.status === 400) {
           setStatus('clientError');
+          window.scrollTo(0, 0);
         } else if (res.status === 409) {
           setStatus('loginError');
+          window.scrollTo(0, 0);
         } else {
           setStatus('serverError');
+          window.scrollTo(0, 0);
         }
       })
       .catch((err) => {
@@ -103,8 +107,8 @@ const Orders = () => {
 
   return (
     <div className={styles.body}>
-      <Form className="col-12 col-sm-3 mx-auto" onSubmit={handleSubmit}>
-        <h1 className="pt-5">Sign up</h1>
+      <Form className="col-12 col-sm-6 mx-auto my-5" onSubmit={handleSubmit}>
+        <h1 className="pt-5">Order</h1>
 
         {status === 'success' && (
           <Alert variant="success" className="my-5">

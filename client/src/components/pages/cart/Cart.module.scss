@@ -1,7 +1,7 @@
 .body {
-  background-color: #040d12;
   color: white;
-  height: 200vh;
+  min-height: 100vh;
+  background-color: #040D12;
 }
 
 .products {
@@ -94,4 +94,62 @@
   margin: 0 20px;
   font-size: 24px;
   font-weight: bold;
+}
+
+@media only screen and (max-width: 767px) {
+  .products {
+    flex-direction: column;
+    align-items: flex-start;
+    img {
+      height: 100px;
+    }
+  }
+  
+  .first,
+  .price,
+  .quantity {
+    flex: auto;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+
+  .firstInfo {
+    padding-left: 0;
+    padding-top: 10px;
+  }
+
+  .subTotalBox, .subTotal {
+    width: 100%;
+  }
+}
+
+/* Media Query for Medium Screens */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .products {
+    img {
+      height: 120px;
+    }
+  }
+  
+  .first,
+  .price,
+  .quantity {
+    flex: auto;
+  }
+
+  .subTotalBox, .subTotal {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  th:nth-child(2), th:nth-child(3) {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .firstInfo {
+    padding-left: 10px;
+}
 }

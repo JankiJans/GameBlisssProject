@@ -6,11 +6,8 @@ const Content = () => {
     <div className={styles.background}>
       <Container>
         <div className={styles.content}>
-          <h1>BEST GAMES BEST PRICES!</h1>
-          <p>TEST 2</p>
-          <NavLink to="/register">
-            <Button>DOŁĄCZ DO NAS</Button>
-          </NavLink>
+          <h1>BEST GAMES BEST PRICES</h1>
+          <p>SEE FOR YOURSELF!</p>
         </div>
       </Container>
     </div>

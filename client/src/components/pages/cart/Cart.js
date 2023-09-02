@@ -45,17 +45,22 @@ const Cart = () => {
   const handleQuantityChange = (id, change) => {
     const updatedCart = cartData.map((item) => {
       if (item.id === id) {
-        return { ...item, value: item.value + change };
+        const newValue = item.value + change;
+        if (newValue < 0) {
+          return item;
+        }
+        return { ...item, value: newValue };
       }
       return item;
-    });
-
+    }).filter(item => item.value !== 0);
+  
     localStorage.setItem('cart', JSON.stringify(updatedCart));
     setCartData(updatedCart);
   };
 
   return (
     <div className={styles.body}>
+      <div className={styles.body}>
       <Container>
         <h1 className={styles.title}>Cart</h1>
         <Row>
@@ -139,6 +144,7 @@ const Cart = () => {
           </Col>
         </Row>
       </Container>
+      </div>
     </div>
   );
 };

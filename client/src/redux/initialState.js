@@ -3,7 +3,6 @@ const initialState = {
     cart: [],
     user: [],
     orders: [],
-    id: []
 };
 
 export default initialState;
