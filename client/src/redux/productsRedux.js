@@ -15,7 +15,8 @@ const SEARCH_PRODUCTS = createActionName('SEARCH_PRODUCTS');
 export const updateProducts = (payload) => ({ type: UPDATE_PRODUCTS, payload });
 
 const initialState = {
-  data: [],
+  data: [],      
+  filtered: [], 
   requests: {},
 };
 

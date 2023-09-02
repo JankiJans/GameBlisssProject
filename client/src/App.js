@@ -6,7 +6,7 @@ import SeeMore from "./components/pages/singleGamePage/SingleGamePage";
 import Login from "./components/pages/login/loginPage";
 import Cart from "./components/pages/cart/Cart";
 import Orders from "./components/pages/orders/Orders";
-
+import LogoutPage from "./components/features/logout/Logout";
 import { Routes, Route } from "react-router-dom";
 
 import { logIn } from "./redux/usersRedux";
@@ -47,6 +47,7 @@ function App() {
       <Route path="/products/:id" element={<SeeMore/>} />
       <Route path="/cart" element={<Cart/>} />
       <Route path="/order" element={<Orders/>} />
+      <Route path="/logout" element={<LogoutPage/>}/>
       </Routes>
     </MainLayout>
   );

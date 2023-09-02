@@ -24,7 +24,7 @@ export class OrdersService {
     });
   }
 
-  public async create(orderData: CreateOrderDTO): Promise<OrderItem> {
+  public async create(orderData: CreateOrderDTO): Promise<OrderItem[]> {
     const { productId, ...clientData } = orderData;
 
     let client: Client;
@@ -45,23 +45,29 @@ export class OrdersService {
       throw new BadRequestException('Failed to create client');
     }
 
-    try {
-      return await this.prismaService.orderItem.create({
-        data: {
-          product: {
-            connect: { id: productId },
+    const orderItems: OrderItem[] = [];
+    for (const prodId of productId) {
+      try {
+        const orderItem = await this.prismaService.orderItem.create({
+          data: {
+            product: {
+              connect: { id: prodId },
+            },
+            client: {
+              connect: { id: client.id },
+            },
           },
-          client: {
-            connect: { id: client.id },
-          },
-        },
-      });
-    } catch (error) {
-      if (error.code === 'P2025') {
-        throw new BadRequestException("Product doesn't exist");
+        });
+        orderItems.push(orderItem);
+      } catch (error) {
+        if (error.code === 'P2025') {
+          throw new BadRequestException("Product doesn't exist");
+        }
+        throw error;
       }
-      throw error;
     }
-  }
+
+    return orderItems;
+}
 }
 

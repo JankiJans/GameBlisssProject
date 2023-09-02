@@ -1,10 +1,11 @@
-import { Alert, Button, Form, Spinner } from 'react-bootstrap';
 import { useState } from 'react';
 import { getCart } from '../../../redux/cartRedux';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-
+import styles from './Order.module.scss';
 import { API_URL } from '../../../config';
+import { Alert, Button, Form, Spinner, Modal } from 'react-bootstrap';
+
 
 const Orders = () => {
   const [amount, setAmount] = useState('');
@@ -17,10 +18,14 @@ const Orders = () => {
   const [note, setNote] = useState('');
   const [status, setStatus] = useState();
   const [cartData, setCartData] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
 
   const currentUser = localStorage.getItem('loggedInUser');
   const currenUserId = localStorage.getItem('loggedInUserId');
-  console.log(currenUserId)
+  console.log(currenUserId);
   const cart = useSelector(getCart);
 
   useEffect(() => {
@@ -45,11 +50,16 @@ const Orders = () => {
     });
     return totalPrice;
   }
-  const firstProductId = cartData.length > 0 ? cartData[0].product.id : null;
-  const productIds = cartData.map(product => product.product.id);
+
+  const productIds = cartData.map((product) => product.product.id);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!currentUser) {
+      handleShow();
+      return;
+    }
 
     const requestData = {
       clientId: currenUserId,
@@ -92,127 +102,143 @@ const Orders = () => {
   };
 
   return (
-    <Form className="col-12 col-sm-3 mx-auto" onSubmit={handleSubmit}>
-      <h1 className="my-4">Sign up</h1>
+    <div className={styles.body}>
+      <Form className="col-12 col-sm-3 mx-auto" onSubmit={handleSubmit}>
+        <h1 className="pt-5">Sign up</h1>
 
-      {status === 'success' && (
-        <Alert variant="success">
-          <Alert.Heading>Success!</Alert.Heading>
-          <p>You have been successful registered</p>
-        </Alert>
-      )}
+        {status === 'success' && (
+          <Alert variant="success" className="my-5">
+            <Alert.Heading>Success!</Alert.Heading>
+            <p>Your order has been sent to us!</p>
+          </Alert>
+        )}
 
-      {status === 'serverError' && (
-        <Alert variant="danger">
-          <Alert.Heading>Something went wrong!</Alert.Heading>
-          <p>Unexpected error please try again</p>
-        </Alert>
-      )}
+        {status === 'serverError' && (
+          <Alert variant="danger">
+            <Alert.Heading>Something went wrong!</Alert.Heading>
+            <p>Unexpected error please try again</p>
+          </Alert>
+        )}
 
-      {status === 'clientError' && (
-        <Alert variant="danger">
-          <Alert.Heading>Not enough data</Alert.Heading>
-          <p>You have to fill all the fields</p>
-        </Alert>
-      )}
+        {status === 'clientError' && (
+          <Alert variant="danger">
+            <Alert.Heading>Not enough data</Alert.Heading>
+            <p>You have to fill all the fields</p>
+          </Alert>
+        )}
 
-      {status === 'loginError' && (
-        <Alert variant="warning">
-          <Alert.Heading>Login already in use</Alert.Heading>
-          <p>You have to use other login</p>
-        </Alert>
-      )}
+        {status === 'loading' && (
+          <Spinner animation="border" role="status" className="block mx-auto">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        )}
 
-      {status === 'loading' && (
-        <Spinner animation="border" role="status" className="block mx-auto">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      )}
+        <Form.Group className="mb-3" controlId="formLogin">
+          <Form.Label>email</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formLogin">
-        <Form.Label>email</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formLogin">
+          <Form.Label>name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formLogin">
-        <Form.Label>name</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formAdress">
+          <Form.Label>address</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter address"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formAdress">
-        <Form.Label>address</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter address"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-        />
-      </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Payment Method</Form.Label>
+          <Form.Select
+            aria-label="Payment method select"
+            value={payment}
+            onChange={(e) => setPayment(e.target.value)}
+          >
+            <option value="">Select a payment method</option>
+            <option value="UPS">Card</option>
+            <option value="DHL">Cash</option>
+            <option value="FedEx">Crypto</option>
+          </Form.Select>
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formPayment">
-        <Form.Label>payment method</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter payment"
-          value={payment}
-          onChange={(e) => setPayment(e.target.value)}
-        />
-      </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Delivery Method</Form.Label>
+          <Form.Select
+            aria-label="delivery method select"
+            value={delivery}
+            onChange={(e) => setDelivery(e.target.value)}
+          >
+            <option value="">Select a delivery method</option>
+            <option value="UPS">UPS</option>
+            <option value="DHL">DHL</option>
+            <option value="FedEx">FedEx</option>
+          </Form.Select>
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formLogin">
-        <Form.Label>delivery</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="delivery method"
-          value={delivery}
-          onChange={(e) => setDelivery(e.target.value)}
-        />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+          <Form.Label>Example textarea</Form.Label>
+          <Form.Control
+            as="textarea"
+            placeholder="type something for us :)"
+            rows={3}
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-        <Form.Label>Example textarea</Form.Label>
-        <Form.Control
-          as="textarea"
-          rows={3}
-          value={note}
-          onChange={(e) => setNote(e.target.value)}
-        />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formAmount">
+          <Form.Label>Total Amount</Form.Label>
+          <Form.Control
+            disabled
+            placeholder="Total amount"
+            value={`${getTotalPrice()}$`}
+            onChange={(e) => setAmount(e.target.value)}
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formAmount">
-        <Form.Label>Total Amount</Form.Label>
-        <Form.Control
-          type="number"
-          placeholder="Total amount"
-          value={getTotalPrice()}
-          onChange={(e) => setAmount(e.target.value)}
-        />
-      </Form.Group>
+        <Form.Group className="mb-3" controlId="formQuantity">
+          <Form.Label>Total Quantity</Form.Label>
+          <Form.Control
+            disabled
+            placeholder="Total quantity"
+            value={getTotalQuantity()}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formQuantity">
-        <Form.Label>Total Quantity</Form.Label>
-        <Form.Control
-          type="number"
-          placeholder="Total quantity"
-          value={getTotalQuantity()}
-          onChange={(e) => setQuantity(e.target.value)}
-        />
-      </Form.Group>
+        <Button variant="warning" type="submit" className="mb-5">
+          Submit
+        </Button>
+      </Form>
 
-      <Button variant="warning" type="submit" className="mb-5">
-        Submit
-      </Button>
-    </Form>
+      <Modal show={showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Not Logged In</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>You need to be logged in to submit the form. Please create an account or login.</Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
   );
 };
 

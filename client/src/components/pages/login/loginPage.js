@@ -7,6 +7,8 @@ import { logIn } from '../../../redux/usersRedux'
 
 import { useNavigate } from 'react-router-dom'
 
+import styles from './loginPage.module.scss'
+
 
 const Login = () => {
 
@@ -38,6 +40,9 @@ const Login = () => {
         const { email, id } = data.user;
         dispatch(logIn({ email, id }));
         setStatus('success');
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 2000);
       } else {
         setStatus('serverError');
       }
@@ -49,6 +54,7 @@ const Login = () => {
 
 
   return (
+    <div className={styles.body}>
     <Form className="col-12 col-sm-3 mx-auto" onSubmit={handleSubmit}>
       <h1 className='py-5'>login</h1>
 
@@ -99,6 +105,7 @@ const Login = () => {
       <Button variant='warning' type='submit' className='mb-5'>Log in</Button>
 
     </Form>
+    </div>
     )
 }
 

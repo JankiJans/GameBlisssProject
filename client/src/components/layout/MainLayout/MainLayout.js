@@ -5,7 +5,7 @@ const MainLayout = ({ children }) => (
   <div>
     <MainMenu />
     {children}
-    {/* <Footer /> */}
+    <Footer />
   </div>
 );
 

@@ -4,10 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { API_URL } from '../../../config';
 import { getProducts, updateProducts } from '../../../redux/productsRedux';
 import { IMAGES_URL } from '../../../config';
+import { Link } from 'react-router-dom';
 import styles from './Games.module.scss';
-
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Stars from '../../features/Stars/Stars';
 
@@ -56,7 +54,7 @@ const FeatureProduct = () => {
         {allProducts.map((prod) => (
           <div key={prod.id} style={{ width: '250px' }} className="mx-2 mb-5">
             <Card>
-              <a href={`/products/${prod.id}`}>
+              <Link to={`/products/${prod.id}`}>
                 <Card.Img
                   variant="top"
                   src={IMAGES_URL + prod.image}
@@ -64,7 +62,7 @@ const FeatureProduct = () => {
                   alt="image here"
                   className={styles.hoverCard}
                 />
-              </a>
+              </Link>
               <Card.Body style={{ height: '150px' }} className='mb-3'>
                 <Card.Title>{shortenTitle(prod.name, 22)}</Card.Title>
                 <Card.Text><Stars rating={prod.rating}/></Card.Text>

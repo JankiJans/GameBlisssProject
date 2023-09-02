@@ -5,21 +5,34 @@ import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faUser, faUserPlus, faUserTimes } from '@fortawesome/free-solid-svg-icons';
 import styles from './MainMenu.module.scss';
 import { getCart } from '../../../redux/cartRedux';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { logOut } from '../../../redux/usersRedux';
 
 function OffcanvasExample() {
-  const cartItems = useSelector(getCart)
-  console.log(cartItems)
+  const cartItems = useSelector(getCart);
+  const currentUser = localStorage.getItem('loggedInUser');
+  
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logOut());
+    window.location.href = '/logout';
+  };
+
 
   return (
     <>
       {['sm'].map((sm) => (
         <Navbar key={sm} expand={sm} className="bg-body-tertiary">
           <Container fluid>
-            <Navbar.Brand><Link to="/" className={styles.brand}>GameBLiss</Link></Navbar.Brand>
+            <Navbar.Brand>
+              <Link to="/" className={styles.brand}>
+                GameBLiss
+              </Link>
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-sm-${sm}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-sm-${sm}`}
@@ -33,11 +46,23 @@ function OffcanvasExample() {
               </Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                  <div className={styles.cart}>
-                  <Link to="/cart" className={styles.cartIcon}>
-                    <FontAwesomeIcon icon={faShoppingCart} className="me-2" />
-                  </Link>
-                  <span>{cartItems.length}</span>
+                  <div
+                    className="btn-group ms-auto me-3"
+                    role="group"
+                    aria-label="Basic example"
+                  >
+                    <Link to='/cart'><button type="button" className="btn btn-dark">
+                      <FontAwesomeIcon icon={faShoppingCart} /> Cart<span className={styles.prodNumbers}>({cartItems.length})</span>
+                    </button></Link>
+                    {currentUser &&<button type="button" className="btn btn-dark" onClick={handleLogout}>
+                      <FontAwesomeIcon icon={faUserTimes} /> Logout
+                    </button>}
+                    {!currentUser &&<Link to='/login'><button type="button" className="btn btn-dark">
+                      <FontAwesomeIcon icon={faUser} /> Login
+                    </button></Link>}
+                    {!currentUser &&<Link to='/register'><button type="button" className="btn btn-dark">
+                      <FontAwesomeIcon icon={faUserPlus} /> Register
+                    </button></Link>}
                   </div>
                 </Nav>
               </Offcanvas.Body>

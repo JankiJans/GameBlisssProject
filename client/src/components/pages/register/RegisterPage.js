@@ -1,6 +1,7 @@
 import {Alert, Button, Form, Spinner} from 'react-bootstrap'
 import { useState } from 'react'
 
+import styles from './RegisterPage.module.scss'
 
 import { API_URL } from '../../../config'
 
@@ -49,8 +50,8 @@ const Register = () => {
   }
 
   return (
-    
-      <Form className="col-12 col-sm-3 mx-auto" onSubmit={handleSubmit}>
+    <div className={styles.body}>
+      <Form className="col-12 col-sm-3 mx-auto pt-5" onSubmit={handleSubmit}>
 
         <h1 className='my-4'>Sign up</h1>
 
@@ -77,7 +78,7 @@ const Register = () => {
 
         {status === "loginError" && (
           <Alert variant='warning'>
-            <Alert.Heading>Login already in use</Alert.Heading>
+            <Alert.Heading>Email already in use</Alert.Heading>
             <p>You have to use other login</p>
           </Alert>
         )}
@@ -106,6 +107,7 @@ const Register = () => {
 
         <Button variant='warning' type='submit' className='mb-5'>Submit</Button>
       </Form>
+      </div>
     
   )
 }

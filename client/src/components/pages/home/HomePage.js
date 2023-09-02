@@ -1,7 +1,6 @@
 import { Container, Row, Col } from 'reactstrap';
 import Games from '../games/Games';
 import styles from './HomePage.module.scss';
-import SearchBar from '../../features/SearchBar/SearchBar';
 import Content from '../../layout/Content/Content';
 import InformationTiles from '../../layout/InformationTiles/InformationTiles';
 
@@ -17,7 +16,6 @@ const HomePage = () => {
               <div className={styles.searchBar}>
               </div>
             </div>
-            <SearchBar />
             <Col>
               <Games />
             </Col>
