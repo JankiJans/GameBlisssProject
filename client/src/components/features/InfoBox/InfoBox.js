@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faKey, faUserSecret } from '@fortawesome/free-solid-svg-icons';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import styles from './InfoBox.module.scss'
 
 function InfoBox() {

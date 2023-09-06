@@ -1,9 +1,11 @@
 import styles from './Content.module.scss';
-import { NavLink, Button, Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import { IMAGES_URL } from '../../../config';
 
 const Content = () => {
   return (
     <div className={styles.background}>
+      <img className={styles.bgImage} src={`${IMAGES_URL}background.jpg`} alt="Background" />
       <Container>
         <div className={styles.content}>
           <h1>BEST GAMES BEST PRICES</h1>
