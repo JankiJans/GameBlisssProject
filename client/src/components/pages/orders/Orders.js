@@ -6,7 +6,6 @@ import styles from './Order.module.scss';
 import { API_URL } from '../../../config';
 import { Alert, Button, Form, Spinner, Modal } from 'react-bootstrap';
 
-
 const Orders = () => {
   const [amount, setAmount] = useState('');
   const [email, setEmail] = useState('');
@@ -49,6 +48,10 @@ const Orders = () => {
       totalPrice += product.product.price * product.value;
     });
     return totalPrice;
+  }
+
+  function getGameNames() {
+    return cartData.map((product) => product.product.name).join(', ');
   }
 
   const productIds = cartData.map((product) => product.product.id);
@@ -216,14 +219,9 @@ const Orders = () => {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formQuantity">
-          <Form.Label>Total Quantity</Form.Label>
-          <Form.Control
-            disabled
-            placeholder="Total quantity"
-            value={getTotalQuantity()}
-            onChange={(e) => setQuantity(e.target.value)}
-          />
+        <Form.Group className="mb-3" controlId="formGameNames">
+          <Form.Label>Games in Cart</Form.Label>
+          <Form.Control disabled placeholder="Games" value={getGameNames()} />
         </Form.Group>
 
         <Button variant="warning" type="submit" className="mb-5">
@@ -235,7 +233,10 @@ const Orders = () => {
         <Modal.Header closeButton>
           <Modal.Title>Not Logged In</Modal.Title>
         </Modal.Header>
-        <Modal.Body>You need to be logged in to submit the form. Please create an account or login.</Modal.Body>
+        <Modal.Body>
+          You need to be logged in to submit the form. Please create an account
+          or login.
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleClose}>
             Close
