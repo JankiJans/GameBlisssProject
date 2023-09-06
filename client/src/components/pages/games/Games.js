@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Card, Spinner, Button } from 'react-bootstrap';
+import { Card, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { API_URL } from '../../../config';
 import { getProducts, updateProducts } from '../../../redux/productsRedux';
@@ -10,7 +10,7 @@ import styles from './Games.module.scss';
 import Stars from '../../features/Stars/Stars';
 
 
-const FeatureProduct = () => {
+const Games = () => {
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const allProducts = useSelector(getProducts);
@@ -52,8 +52,8 @@ const FeatureProduct = () => {
     return (
       <div className="py-5 d-flex flex-wrap">
         {allProducts.map((prod) => (
-          <div className={styles.test}>
-          <div key={prod.id} style={{ width: '250px' }} className="mx-2 mb-5">
+          <div key={prod.id} className={styles.test}>
+          <div style={{ width: '250px' }} className="mx-2 mb-5">
             <Card>
               <Link to={`/products/${prod.id}`}>
                 <Card.Img
@@ -66,7 +66,7 @@ const FeatureProduct = () => {
               </Link>
               <Card.Body style={{ height: '150px' }} className='mb-3'>
                 <Card.Title>{shortenTitle(prod.name, 22)}</Card.Title>
-                <Card.Text><Stars rating={prod.rating}/></Card.Text>
+                <div className={styles.stars}><Stars rating={prod.rating}/></div>
                 <Card.Text className={`${styles.categoryBackground} mb-2`}>{prod.category}</Card.Text>
                 <Card.Text>From <b>{prod.price}$</b></Card.Text>
               </Card.Body>
@@ -79,4 +79,4 @@ const FeatureProduct = () => {
   }
 };
 
-export default FeatureProduct;
+export default Games;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -13,6 +13,12 @@ import { logOut } from '../../../redux/usersRedux';
 
 function OffcanvasExample() {
   const cartItems = useSelector(getCart);
+  const [cartCount, setCartCount] = useState(cartItems.length);
+  
+  useEffect(() => {
+      setCartCount(cartItems.length);
+  }, [cartItems]);
+
   const currentUser = localStorage.getItem('loggedInUser');
 
   const dispatch = useDispatch();
@@ -52,7 +58,7 @@ function OffcanvasExample() {
                     aria-label="Basic example"
                   >
                     <Link to='/cart'><button type="button" className="btn btn-dark">
-                      <FontAwesomeIcon icon={faShoppingCart} /> Cart<span className={styles.prodNumbers}>({cartItems.length})</span>
+                      <FontAwesomeIcon icon={faShoppingCart} /> Cart<span className={styles.prodNumbers}>({cartCount})</span>
                     </button></Link>
                     {currentUser &&<button type="button" className="btn btn-dark" onClick={handleLogout}>
                       <FontAwesomeIcon icon={faUserTimes} /> Logout

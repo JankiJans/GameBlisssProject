@@ -86,10 +86,10 @@ const SingleGamePage = () => {
               <h6>{prod.description}</h6>
             </div>
             <div>
-              <h5 className={styles.categoryBackground}>{prod.category}</h5>
+              <h6 className={styles.categoryBackground}>{prod.category}</h6>
             </div>
             <div>
-              <h5 className={styles.producentBackground}>{prod.producent}</h5>
+              <h6 className={styles.producentBackground}>{prod.producent}</h6>
             </div>
             <div
               className={`${styles.addToCart} ${styles.whiteLineBelowButton}`}

@@ -12,9 +12,7 @@ const HomePage = () => {
         <Container>
           <Row className={styles.topContainer}>
             <div className={styles.top}>
-              <h1>Best Sellers</h1>
-              <div className={styles.searchBar}>
-              </div>
+              <h1>Best Sellers</h1>             
             </div>
             <Col>
               <Games />
