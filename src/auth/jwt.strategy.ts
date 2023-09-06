@@ -7,7 +7,7 @@ import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
-  constructor(private configService: ConfigService, private usersService: UsersService) {
+  constructor(private configService: ConfigService, private usersService: UsersService,) {
     super({
       jwtFromRequest: ExtractJwt.fromExtractors([
         (request: Request) => {
@@ -19,12 +19,14 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
         },
       ]),
       ignoreExpiration: false,
-      secretOrKey: configService.get('jwt.secret'),
+      secretOrKey: process.env.JWT_SECRET,
     });
+    
   }
 
   async validate(payload: any) {
     const user = await this.usersService.getById(payload.sub);
     return user;
   }
+  
 }
