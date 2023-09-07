@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { getCart } from '../../../redux/cartRedux';
+import { getCart, clearCart } from '../../../redux/cartRedux';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import styles from './Order.module.scss';
 import { API_URL } from '../../../config';
 import { Alert, Button, Form, Spinner, Modal } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 
 const Orders = () => {
   const [amount, setAmount] = useState('');
@@ -21,6 +22,8 @@ const Orders = () => {
 
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
+
+  const dispatch = useDispatch()
 
   const currentUser = localStorage.getItem('loggedInUser');
   const currenUserId = localStorage.getItem('loggedInUserId');
@@ -91,7 +94,12 @@ const Orders = () => {
       .then((res) => {
         if (res.status === 201) {
           setStatus('success');
+          localStorage.removeItem('cart');
+          dispatch(clearCart());
           window.scrollTo(0, 0);
+          setTimeout(() => {
+            window.location.href = '/';
+          }, 2000);
         } else if (res.status === 400) {
           setStatus('clientError');
           window.scrollTo(0, 0);
