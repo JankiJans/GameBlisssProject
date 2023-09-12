@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { IMAGES_URL } from '../../../config';
 import { API_URL } from '../../../config';
 import { useEffect } from 'react';
-import { Container, Image, Button, Toast, Table } from 'react-bootstrap';
+import { Container, Image, Button, Toast, Table, Form } from 'react-bootstrap';
 import styles from './SingleGamePage.module.scss';
 import { Carousel } from 'react-bootstrap';
 import Stars from '../../features/Stars/Stars';
@@ -92,7 +92,7 @@ const SingleGamePage = () => {
               <h6 className={styles.producentBackground}>{prod.producent}</h6>
             </div>
             <div
-              className={`${styles.addToCart} ${styles.whiteLineBelowButton}`}
+              className={`${styles.addToCart} ${styles.whiteLineBelowButton} ${styles.flexRow}`}
             >
               <Button
                 variant="warning"
@@ -101,19 +101,26 @@ const SingleGamePage = () => {
               >
                 <FontAwesomeIcon icon={faShoppingCart} />{' '}
                 <span>
-                  <b>{prod.price}$</b>
+                  <b>{prod.price * value}$</b>
                 </span>
               </Button>
+              <Form.Group className={styles.quantity}>
+                <Form.Control
+                  className={styles.quantityInput}
+                  type="number"
+                  value={value}
+                  min="1"
+                  max="10"
+                  onChange={(e) => 
+                    setValue(Math.min(Math.max(1, Number(e.target.value)), 10))
+                  }
+                />
+              </Form.Group>
             </div>
             <Toast
               show={showToast}
               onClose={() => setShowToast(false)}
-              style={{
-                position: 'fixed',
-                bottom: '40px',
-                left: '10px',
-                zIndex: 1000,
-              }}
+              className={styles.toastStyle}
             >
               <Toast.Header
                 className={`bg-${
@@ -139,7 +146,7 @@ const SingleGamePage = () => {
           <Carousel>
             {prod.gallery.map((item) => (
               <Carousel.Item key={item.id}>
-                <img src={IMAGES_URL + item.image} alt={item.name}/>
+                <img src={IMAGES_URL + item.image} alt={item.name} />
               </Carousel.Item>
             ))}
           </Carousel>

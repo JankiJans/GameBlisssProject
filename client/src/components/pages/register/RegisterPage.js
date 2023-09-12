@@ -1,9 +1,11 @@
-import {Alert, Button, Form, Spinner} from 'react-bootstrap'
+import { Button, Form} from 'react-bootstrap'
 import { useState } from 'react'
 
 import styles from './RegisterPage.module.scss'
 
 import { API_URL } from '../../../config'
+
+import Alerts from '../../features/Alerts/Alerts'
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -58,39 +60,7 @@ const Register = () => {
 
         <h1 className='my-4'>Sign up</h1>
 
-        {status === "success" && (
-          <Alert variant='success'>
-            <Alert.Heading>Success!</Alert.Heading>
-            <p>You have been successful registered</p>
-          </Alert>
-        )}
-
-        {status === "serverError" && (
-          <Alert variant='danger'>
-            <Alert.Heading>Something went wrong!</Alert.Heading>
-            <p>Unexpected error please try again</p>
-          </Alert>
-        )}
-
-        {status === "clientError" && (
-          <Alert variant='danger'>
-            <Alert.Heading>Not enough data</Alert.Heading>
-            <p>You have to fill all the fields</p>
-          </Alert>
-        )}
-
-        {status === "loginError" && (
-          <Alert variant='warning'>
-            <Alert.Heading>Email already in use</Alert.Heading>
-            <p>You have to use other login</p>
-          </Alert>
-        )}
-
-        {status === "loading" && (
-          <Spinner animation="border" role="status" className="block mx-auto">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
-        )}
+        <Alerts status={status} context="register"/>
 
         <Form.Group className='mb-3' controlId='formLogin'>
           <Form.Label>Email</Form.Label>

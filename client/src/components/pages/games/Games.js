@@ -59,7 +59,6 @@ const Games = () => {
                 <Card.Img
                   variant="top"
                   src={IMAGES_URL + prod.image}
-                  style={{ height: '250px' }}
                   alt="image here"
                   className={styles.hoverCard}
                 />

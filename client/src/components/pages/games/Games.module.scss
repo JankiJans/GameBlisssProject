@@ -1,5 +1,8 @@
 .hoverCard {
   transition: filter 0.3s;
+  img {
+    height: 250px;
+  }
 }
 
 .hoverCard:hover {

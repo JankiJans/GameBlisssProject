@@ -1,4 +1,4 @@
-import {Button, Form, Alert, Spinner, Container} from 'react-bootstrap'
+import {Button, Form, Container} from 'react-bootstrap'
 import { useState } from 'react'
 import { API_URL } from '../../../config'
 
@@ -6,6 +6,8 @@ import { useDispatch } from 'react-redux'
 import { logIn } from '../../../redux/usersRedux'
 
 import styles from './loginPage.module.scss'
+
+import Alerts from '../../features/Alerts/Alerts'
 
 
 const Login = () => {
@@ -54,39 +56,7 @@ const Login = () => {
     <Form className="col-12 col-sm-6 mx-auto" onSubmit={handleSubmit}>
       <h1 className='py-5'>login</h1>
 
-      {status === "success" && (
-          <Alert variant='success'>
-            <Alert.Heading>You are in!</Alert.Heading>
-            <p>You have been successful logged in!</p>
-          </Alert>
-      )}
-
-      {status === "serverError" && (
-        <Alert variant='danger'>
-          <Alert.Heading>Something went wrong!</Alert.Heading>
-          <p>Unexpected error please try again</p>
-        </Alert>
-      )}
-
-      {status === "clientError" && (
-        <Alert variant='danger'>
-          <Alert.Heading>Incorrect</Alert.Heading>
-          <p>Login or password are Incorrect</p>
-        </Alert>
-      )}
-
-      {status === "loginError" && (
-        <Alert variant='warning'>
-          <Alert.Heading>Login already in use</Alert.Heading>
-          <p>You have to use other login</p>
-        </Alert>
-      )}
-
-      {status === "loading" && (
-        <Spinner animation="border" role="status" className="block mx-auto">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
-      )}
+      <Alerts status={status} context="login"/>
 
       <Form.Group className='mb-3' controlId='formEmail'>
         <Form.Label>Email</Form.Label>

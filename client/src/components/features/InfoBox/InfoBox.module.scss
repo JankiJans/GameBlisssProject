@@ -9,9 +9,9 @@
 
   @media (max-width: 575px) {
     .row > .col {
-      flex-basis: 100% !important; // Make sure each col takes full width
-      max-width: 100% !important; // Make sure each col takes full width
-      margin-bottom: 15px; // Add some space between the columns when stacked
+      flex-basis: 100% !important; 
+      max-width: 100% !important; 
+      margin-bottom: 15px;
     }
   }
   
